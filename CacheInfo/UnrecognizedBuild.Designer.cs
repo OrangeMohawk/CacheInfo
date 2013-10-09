@@ -150,7 +150,7 @@
             this.loadNoneButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.loadNoneButton.Location = new System.Drawing.Point(128, 234);
             this.loadNoneButton.Name = "loadNoneButton";
-            this.loadNoneButton.Size = new System.Drawing.Size(144, 23);
+            this.loadNoneButton.Size = new System.Drawing.Size(154, 23);
             this.loadNoneButton.TabIndex = 1;
             this.loadNoneButton.Text = "No Thanks";
             this.loadNoneButton.UseVisualStyleBackColor = true;
@@ -161,10 +161,8 @@
             this.AcceptButton = this.loadNoneButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.loadNoneButton;
-            this.ClientSize = new System.Drawing.Size(394, 269);
+            this.ClientSize = new System.Drawing.Size(404, 269);
             this.Controls.Add(this.loadH4NoRawButton);
             this.Controls.Add(this.loadH4Button);
             this.Controls.Add(this.loadReachButton);
@@ -176,10 +174,9 @@
             this.Controls.Add(this.overrideLabel);
             this.Controls.Add(this.labeltext);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(410, 307);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(410, 150);
             this.Name = "UnrecognizedBuild";
             this.ShowIcon = false;
             this.Text = "Error: Unrecognized Build";
