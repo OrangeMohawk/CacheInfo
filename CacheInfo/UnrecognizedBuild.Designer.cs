@@ -179,6 +179,7 @@
             this.MinimizeBox = false;
             this.Name = "UnrecognizedBuild";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Error: Unrecognized Build";
             this.ResumeLayout(false);
             this.PerformLayout();
