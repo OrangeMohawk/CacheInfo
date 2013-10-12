@@ -12,8 +12,10 @@ namespace Functions
 
         public int[] Halo4Values(string _path)
         {
-            Reader r = new Reader(_path);
+            
+            int halo4header = 0x1E000;
 
+            Reader r = new Reader(_path);
             r.Position = 0x2F8;
             int virtualbase = r.ReadInt32();
             r.Position = 0x300;
@@ -58,6 +60,22 @@ namespace Functions
 
             int metasize = (part0sz + part1sz + part2sz + part3sz + part4sz + part5sz);
 
+            r.Position = 0x160;
+            int stringindextablerawoffset = r.ReadInt32();
+            int stringindextableoffset = (stringindextablerawoffset + halo4header - stringmagic);
+            r.Position = 0x164;
+            int stringtablerawoffset = r.ReadInt32();
+            int stringtableoffset = (stringtablerawoffset + halo4header - stringmagic);
+            r.Position = 0x2C0;
+            int tagindextablerawoffset = r.ReadInt32();
+            int tagindextableoffset = (tagindextablerawoffset + halo4header - stringmagic);
+            r.Position = 0x2B8;
+            int tagdatatablerawoffset = r.ReadInt32();
+            int tagdatatableoffset = (tagdatatablerawoffset + halo4header - stringmagic);
+            r.Position = 0x2C0;
+            int unkdatatablerawoffset = r.ReadInt32();
+            int unkdatatableoffset = (tagdatatablerawoffset + halo4header - stringmagic);
+
             int[] halo4values = {
                                     virtualbase,
                                     part0,
@@ -79,14 +97,18 @@ namespace Functions
                                     assetdatasize,
                                     localeindextablerawoffset,
                                     localetotalsize,
-                                    metasize
+                                    metasize,
+                                    stringindextableoffset,
+                                    stringtableoffset,
+                                    tagindextableoffset,
+                                    tagdatatableoffset,
+                                    unkdatatableoffset
                                 };
             return halo4values;
         }
 
         public int[] Halo4StandardValues(string _path)
         {
-            int halo4header = 0x1E000;
             int indexheaderaddress = AllThirdGenInt(_path)[1];
             int[] h4values = Halo4Values(_path);
 
@@ -97,19 +119,6 @@ namespace Functions
 
             Reader r = new Reader(_path);
 
-            r.Position = 0x160;
-            int stringindextablerawoffset = r.ReadInt32();
-            int stringindextableoffset = (stringindextablerawoffset + halo4header - stringmagic);
-            r.Position = 0x164;
-            int stringtablerawoffset = r.ReadInt32();
-            int stringtableoffset = (stringtablerawoffset + halo4header - stringmagic);
-            r.Position = 0x2C0;
-            int tagindextablerawoffset = r.ReadInt32();
-            int tagindextableoffset = (tagindextablerawoffset + halo4header - stringmagic);
-            r.Position = 0x2B8;
-            int tagdatatablerawoffset = r.ReadInt32();
-            int tagdatatableoffset = (tagdatatablerawoffset + halo4header - stringmagic);
-
             int metaoff = (assetdata + assetdatasize);
 
             int tagmask = (virtualbase - metaoff);
@@ -117,15 +126,11 @@ namespace Functions
             int indexheaderoffset = (indexheaderaddress - tagmask);
 
             int[] h4standardvalues = {
-                                    metaoff,
-                                    stringindextableoffset,
-                                    stringtableoffset,
-                                    tagindextableoffset,
-                                    tagdatatableoffset,
-                                    assetdata,
-                                    tagmask,
-                                    indexheaderoffset
-                                };
+                                        metaoff,
+                                        assetdata,
+                                        tagmask,
+                                        indexheaderoffset
+                                      };
             return h4standardvalues;
         }
 
@@ -142,25 +147,12 @@ namespace Functions
             r.Position = 0x14;
             int metaoff = r.ReadInt32();
 
-            r.Position = 0x160;
-            int stringindextableoffset = r.ReadInt32();
-            r.Position = 0x164;
-            int stringtableoffset = r.ReadInt32();
-            r.Position = 0x2C0;
-            int tagindextableoffset = r.ReadInt32();
-            r.Position = 0x2B8;
-            int tagdatatableoffset = r.ReadInt32();
-
             int tagmask = (virtualbase - metaoff);
 
             int indexheaderoffset = (indexheaderaddress - tagmask);
 
             int[] h4norawvalues = {
                                     metaoff,
-                                    stringindextableoffset,
-                                    stringtableoffset,
-                                    tagindextableoffset,
-                                    tagdatatableoffset,
                                     alternaterawoffset,
                                     tagmask,
                                     indexheaderoffset

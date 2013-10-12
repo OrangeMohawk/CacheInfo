@@ -530,13 +530,9 @@ namespace CacheInfo
                 int[] h4norawvalues = HV.Halo4NoRawValues(_path);
 
                 int metaoff = h4norawvalues[0];
-                int stringindextableoffset = h4norawvalues[1];
-                int stringtableoffset = h4norawvalues[2];
-                int tagindextableoffset = h4norawvalues[3];
-                int tagdatatableoffset = h4norawvalues[4];
-                int alternaterawoffset = h4norawvalues[5];
-                int tagmask = h4norawvalues[6];
-                int indexheaderoffset = h4norawvalues[7];
+                int alternaterawoffset = h4norawvalues[1];
+                int tagmask = h4norawvalues[2];
+                int indexheaderoffset = h4norawvalues[3];
 
                 Reader r = new Reader(_path);
 
@@ -569,10 +565,6 @@ namespace CacheInfo
                 tagtablesizeText.Paste(o + tagindexsize.ToString("X"));
                 tagindextableText.Paste(o + tagtableoff.ToString("X"));
                 metaText.Paste(o + metaoff.ToString("X"));
-                stringindtableText.Paste(o + stringindextableoffset.ToString("X"));
-                stringtableText.Paste(o + stringtableoffset.ToString("X"));
-                tagnameindtableText.Paste(o + tagindextableoffset.ToString("X"));
-                tagnametableText.Paste(o + tagdatatableoffset.ToString("X"));
                 rawText.Paste(o + alternaterawoffset.ToString("X"));
                 tagmaskText.Paste(o + tagmask.ToString("X"));
                 indexheadText.Paste(o + indexheaderoffset.ToString("X"));
@@ -592,13 +584,9 @@ namespace CacheInfo
                 int[] h4standardvalues = HV.Halo4StandardValues(_path);
 
                 int metaoff = h4standardvalues[0];
-                int stringindextableoffset = h4standardvalues[1];
-                int stringtableoffset = h4standardvalues[2];
-                int tagindextableoffset = h4standardvalues[3];
-                int tagdatatableoffset = h4standardvalues[4];
-                int assetdata = h4standardvalues[5];
-                int tagmask = h4standardvalues[6];
-                int indexheaderoffset = h4standardvalues[7];
+                int assetdata = h4standardvalues[1];
+                int tagmask = h4standardvalues[2];
+                int indexheaderoffset = h4standardvalues[3];
 
                 Reader r = new Reader(_path);
 
@@ -631,10 +619,6 @@ namespace CacheInfo
                 tagtablesizeText.Paste(o + tagindexsize.ToString("X"));
                 tagindextableText.Paste(o + tagtableoff.ToString("X"));
                 metaText.Paste(o + metaoff.ToString("X"));
-                stringindtableText.Paste(o + stringindextableoffset.ToString("X"));
-                stringtableText.Paste(o + stringtableoffset.ToString("X"));
-                tagnameindtableText.Paste(o + tagindextableoffset.ToString("X"));
-                tagnametableText.Paste(o + tagdatatableoffset.ToString("X"));
                 rawText.Paste(o + assetdata.ToString("X"));
                 tagmaskText.Paste(o + tagmask.ToString("X"));
                 indexheadText.Paste(o + indexheaderoffset.ToString("X"));
@@ -674,6 +658,11 @@ namespace CacheInfo
                 int localeindextablerawoffset = h4values[18];
                 int localetotalsize = h4values[19];
                 int metasize = h4values[20];
+                int stringindextableoffset = h4values[21];
+                int stringtableoffset = h4values[22];
+                int tagindextableoffset = h4values[23];
+                int tagdatatableoffset = h4values[24];
+                int unkdatatableoffset = h4values[25];
 
                 int localeindextableoffset = (localeindextablerawoffset + localemagic);
 
@@ -695,6 +684,11 @@ namespace CacheInfo
                 rawszText.Paste(o + assetdatasize.ToString("X"));
                 localetotalsizeText.Paste(o + localetotalsize.ToString("X"));
                 localedataoffsetText.Paste(o + localeindextableoffset.ToString("X"));
+
+                stringindtableText.Paste(o + stringindextableoffset.ToString("X"));
+                stringtableText.Paste(o + stringtableoffset.ToString("X"));
+                tagnameindtableText.Paste(o + tagindextableoffset.ToString("X"));
+                tagnametableText.Paste(o + tagdatatableoffset.ToString("X"));
             }
             catch (Exception ex)
             {
